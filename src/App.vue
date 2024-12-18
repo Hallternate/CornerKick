@@ -4,16 +4,16 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
+  <header><div class="logoWrapper">
+    <img alt="Vue logo" class="logo" src="/src/assets/CornerKick.png" width="125" height="125" />
+  </div>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/other">Other</RouterLink> . 
+        <RouterLink to="/future">Future</RouterLink>
+        <RouterLink to="/map">Map</RouterLink>
       </nav>
     </div>
   </header>
@@ -22,14 +22,27 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped>
+
+
+.logoWrapper{background-image:url('/src/assets/goal.png');
+background-size: 200px;
+background-position: 50% 100%;
+background-repeat: no-repeat;
+padding: .5px;}
+
+
 header {
   line-height: 1.5;
   max-height: 100vh;
 }
 
+
+
 .logo {
   display: block;
   margin: 0 auto 2rem;
+  padding: 10px;
+ 
 }
 
 nav {

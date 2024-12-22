@@ -1,34 +1,37 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
+import footer from './components/footer.vue'
 </script>
 
 <template>
   <header><div class="logoWrapper">
-    <img alt="Vue logo" class="logo" src="/src/assets/CornerKick.png" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="/src/assets/CornerKick.png" width="75" height="60" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
   </div>
     <div class="wrapper">
       
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/future">Future</RouterLink>
-        <RouterLink to="/map">Map</RouterLink>
-      </nav>
+      
     </div>
   </header>
 
   <RouterView />
+
+  <component :is="footer" />
 </template>
 
 <style scoped>
 
 
 .logoWrapper{background-image:url('/src/assets/goal.png');
-background-size: 200px;
-background-position: 50% 100%;
+background-size: 130px;
+background-position: 50% 0%;
 background-repeat: no-repeat;
-padding: .5px;}
+padding: .5px;
+padding-bottom:15px}
 
 
 header {
@@ -40,8 +43,8 @@ header {
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
-  padding: 10px;
+  margin: 0 auto .5rem;
+  padding-bottom: 0px;
  
 }
 

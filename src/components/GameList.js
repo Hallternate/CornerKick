@@ -1,30 +1,47 @@
+
+
 const events = [
-    { date: '01/04/2024', name: 'miles', time:200, loc:'field1' },
-    { date: '12/21/2024', name: 'miles', time:1200, loc:'field2' },
-    { date: '12/28/2024', name: 'roslyn', time:100, loc:'field' },
-    { date: '12/21/2024', name: 'ros', time:1215, loc:'field3' },
-    { date: '01/04/2024', name: 'miles', time:300, loc:'field4' },
-    { date: '12/21/2024', name: 'miles', time:900, loc:'field7' },
-    { date: '12/28/2024', name: 'roslyn', time:1100, loc:'field6' },
-    { date: '12/21/2024', name: 'ros', time:915, loc:'field8' }
-    ]
+    { date: new Date('2025-01-04T18:00:00-06:00'), name: 'miles', loc: 'field1' },
+    { date: new Date('2024-12-21T18:00:00-06:30'), name: 'miles', loc: 'field2' },
+    { date: new Date('2024-12-28T18:00:00-01:00'), name: 'roslyn', loc: 'field' },
+    { date: new Date('2024-12-28T18:00:00-01:00'), name: 'miles', loc: 'field' },
+    { date: new Date('2024-12-28T18:00:00-01:00'), name: 'roslyn', loc: 'field' },
+    { date: new Date('2024-12-28T18:00:00-02:00'), name: 'roslyn0', loc: 'field' },
+    { date: new Date('2024-12-21T18:15:00-06:00'), name: 'ros', loc: 'field3' },
+    { date: new Date('2025-01-04T18:00:00-06:30'), name: 'miles', loc: 'field4' },
+    { date: new Date('2025-01-04T18:00:00-06:10'), name: 'miles', loc: 'field4' },
+    { date: new Date('2024-12-21T18:00:00-07:00'), name: 'miles', loc: 'field7' },
+    { date: new Date('2024-12-21T18:15:00-06:00'), name: 'ros', loc: 'field8' }
+];
 
-export function generateList(){
-
-events.sort((a, b) => new Date(a.date) - new Date(b.date));
-console.log(events)
+// Get current date (ignoring time)
 const today = new Date();
-const todayo= today.getDate()
-console.log(todayo)
+today.setHours(0, 0, 0, 0); // Set to midnight
 
-return events
+// Filter out past events
+const futureEvents = events.filter(event => event.date >= today);
+
+//Sort future events by date
+futureEvents.sort((a, b) => a.date - b.date);
+
+//Create a list of all unique dates (ignoring time)
+const uniqueDates = [...new Set(futureEvents.map(event => event.date.toISOString().split('T')[0]))];
+
+console.log('Unique Dates:', uniqueDates);
+
+//Create lists of events for each unique date
+const eventsByDate = uniqueDates.map(date => futureEvents.filter(event => event.date.toISOString().split('T')[0] === date));
+
+console.log('Events Grouped by Date:', eventsByDate);
+
+//Functions to get the soonest and next events
+export function nextUpcomingDay() {
+    return eventsByDate[0] || [];  // Return events for the soonest date (index 0)
 }
 
-
-/*
-figure out how to get date in right format or see what it looks like to store date in firebase
-    */
-
+export function afterSoonest() {
+    return eventsByDate[1] || [];  // Return events for the next date (index 1)
+}
 
 
 

@@ -3,12 +3,16 @@
 </script>
 
 <template>
-  <div class="footerWrapper">
+  <div class="footerWrapper row">
+    <div class="col-4"></div>
+    <div class="col-4">
     <nav>
         <RouterLink to="/future">Future</RouterLink><br>
         <RouterLink to="/map">Map</RouterLink>
-      </nav>
-
+      </nav></div>
+      <div class="col-4"></div>
+  
+  <div class="col-4"></div>
   </div>
 </template>
 
@@ -30,6 +34,10 @@ background-size: 130px;
 color: white;
 background-position: 50% 0%;
 background-repeat: no-repeat;
-padding: .5px;
-padding-bottom:15px}
+
+padding-bottom:15px;
+
+margin-left: auto;
+margin-right: auto;
+    width: 100%;}
 </style>

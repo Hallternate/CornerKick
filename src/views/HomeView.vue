@@ -1,8 +1,20 @@
 <script setup>
-import {generateList} from '../components/GameList'
+import {nextUpcomingDay, afterSoonest} from '../components/GameList'
 import {ref} from 'vue'
 
-const hello= ref(generateList())
+const nextGameDay = ref(nextUpcomingDay())
+const nextGameDate = ref(nextUpcomingDay()[0].date)
+
+const afterNext= ref(afterSoonest())
+const afterNextDate = ref(afterSoonest()[0].date)
+
+console.log('here', afterNext.value)
+
+const upComingdDate = `${(nextGameDate.value.getMonth() + 1).toString().padStart(2, '0')}/${nextGameDate.value.getDate().toString().padStart(2, '0')}/${nextGameDate.value.getFullYear()}`;
+console.log(upComingdDate)
+
+const nextUpcomingDate = `${(afterNextDate.value.getMonth() + 1).toString().padStart(2, '0')}/${afterNextDate.value.getDate().toString().padStart(2, '0')}/${afterNextDate.value.getFullYear()}`;
+
 
 
 
@@ -17,32 +29,32 @@ const hello= ref(generateList())
     
     
     <div class="cardContainer">
-      <h3 class="heading">Schedule</h3>
+      <h3 class="heading">{{upComingdDate}}</h3>
       <div class="row itemDisplay">
     <div class="col-4"><img class="iconsForList" src="../assets/person.png" ></div>
     <div class="col-4"><img class="iconsForList" src="../assets/time.png" ></div>
     <div class="col-4"><img class="iconsForList" src="../assets/location.png" ></div>
   </div>
-  <div class="row itemDisplay" v-for="(item, index) in hello" :key="index">
+  <div class="row itemDisplay" v-for="(item, index) in nextGameDay" :key="index">
     <div class="col-4">{{ item.name }}</div>
-    <div class="col-4">{{ item.time }}</div>
-    <div class="col-4">{{ item.date }}</div>
+    <div class="col-4">{{ item.date.toLocaleTimeString() }}</div>
+    <div class="col-4">{{ item.loc}}</div>
     
     
   </div>
 </div>
-
+ 
 <div class="cardContainer">
-      <h3 class="heading">Schedule</h3>
+      <h3 class="heading">{{nextUpcomingDate }}</h3>
       <div class="row itemDisplay">
     <div class="col-4"><img class="iconsForList" src="../assets/person.png" ></div>
     <div class="col-4"><img class="iconsForList" src="../assets/time.png" ></div>
     <div class="col-4"><img class="iconsForList" src="../assets/location.png" ></div>
   </div>
-  <div class="row itemDisplay" v-for="(item, index) in hello" :key="index">
+  <div class="row itemDisplay" v-for="(item, index) in afterNext" :key="index">
     <div class="col-4">{{ item.name }}</div>
-    <div class="col-4">{{ item.time }}</div>
-    <div class="col-4">{{ item.date }}</div>
+    <div class="col-4">{{ item.date.toLocaleTimeString() }}</div>
+    <div class="col-4">{{ item.loc}}</div>
     
     
   </div>

@@ -10,6 +10,8 @@ const events = [
     { date: new Date('2024-12-21T18:15:00-06:00'), name: 'ros', loc: 'field3' },
     { date: new Date('2025-01-04T18:00:00-06:30'), name: 'miles', loc: 'field4' },
     { date: new Date('2025-01-04T18:00:00-06:10'), name: 'miles', loc: 'field4' },
+    { date: new Date('2025-01-08T18:00:00-06:30'), name: 'miles', loc: 'field4' },
+    { date: new Date('2025-01-09T18:00:00-06:10'), name: 'miles', loc: 'field4' },
     { date: new Date('2024-12-21T18:00:00-07:00'), name: 'miles', loc: 'field7' },
     { date: new Date('2024-12-21T18:15:00-06:00'), name: 'ros', loc: 'field8' }
 ];
@@ -21,12 +23,16 @@ today.setHours(0, 0, 0, 0); // Set to midnight
 // Filter out past events
 const futureEvents = events.filter(event => event.date >= today);
 
+
 //Sort future events by date
 futureEvents.sort((a, b) => a.date - b.date);
 
 //Create a list of all unique dates (ignoring time)
 const uniqueDates = [...new Set(futureEvents.map(event => event.date.toISOString().split('T')[0]))];
-
+export function getTotalDates(){
+    
+    return uniqueDates.length
+}
 console.log('Unique Dates:', uniqueDates);
 
 //Create lists of events for each unique date

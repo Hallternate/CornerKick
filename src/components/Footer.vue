@@ -7,8 +7,11 @@
     <div class="col-4"></div>
     <div class="col-4">
     <nav>
+        <RouterLink to="/home">Home</RouterLink>
         <RouterLink to="/future">Future</RouterLink><br>
-        <RouterLink to="/map">Map</RouterLink>
+        <!--in future add map option
+        <RouterLink to="/map">Map</RouterLink>-->
+        
       </nav></div>
       <div class="col-4"></div>
   

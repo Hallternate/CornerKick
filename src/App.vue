@@ -2,7 +2,7 @@
 
 
 
-import footer from './components/footer.vue'
+import footer from './components/Footer.vue'
 </script>
 
 <template>

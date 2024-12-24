@@ -1,14 +1,12 @@
 <script setup>
-import {nextUpcomingDay, afterSoonest} from '../components/GameList'
+import {nextUpcomingDay} from '../components/GameList'
 import {ref} from 'vue'
 
-const nextGameDay = ref(nextUpcomingDay())
-const nextGameDate = ref(nextUpcomingDay()[0].date)
+const nextGameDay = ref(nextUpcomingDay(0))
+const nextGameDate = ref(nextUpcomingDay(0)[0].date)
 
-const afterNext= ref(afterSoonest())
-const afterNextDate = ref(afterSoonest()[0].date)
-
-console.log('here', afterNext.value)
+const afterNext= ref(nextUpcomingDay(1))
+const afterNextDate = ref(nextUpcomingDay(1)[0].date)
 
 const upComingdDate = `${(nextGameDate.value.getMonth() + 1).toString().padStart(2, '0')}/${nextGameDate.value.getDate().toString().padStart(2, '0')}/${nextGameDate.value.getFullYear()}`;
 console.log(upComingdDate)

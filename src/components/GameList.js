@@ -35,14 +35,15 @@ const eventsByDate = uniqueDates.map(date => futureEvents.filter(event => event.
 console.log('Events Grouped by Date:', eventsByDate);
 
 //Functions to get the soonest and next events
-export function nextUpcomingDay() {
-    return eventsByDate[0] || [];  // Return events for the soonest date (index 0)
-}
+export function nextUpcomingDay(chosenDate) {
+    
+    return eventsByDate[chosenDate] || [];
+ }
 
-export function afterSoonest() {
+
+export function allFutureEvents() {
     return eventsByDate[1] || [];  // Return events for the next date (index 1)
 }
-
 
 
 

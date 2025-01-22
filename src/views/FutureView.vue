@@ -1,31 +1,33 @@
 <script setup>
-import { nextUpcomingDay, getTotalDates } from '../components/GameList'
+
 import { ref } from 'vue'
+import { useGamesStore } from '../store/GetGamesStore';
 
-
-const totalDates = getTotalDates()
-
-
+const store = useGamesStore();
+const totalDates = store.getTotalDates()
 const gameDays = ref([])
-
 
 const fetchGameDays = () => {
   gameDays.value = []  
   for (let i = 0; i < totalDates; i++) {
-    gameDays.value.push(nextUpcomingDay(i))
+    const day = store.nextUpcomingDay(i);
+    day.forEach(item => {
+      if (typeof item.date === 'string') {
+        item.date = new Date(item.date); 
+      }
+    });
+    gameDays.value.push(day);
   }
-}
-
+};
 
 fetchGameDays()
 
-console.log('Game Days:', gameDays.value)
 </script>
 
 <template>
   <main>
     <div class="cardContainer" v-for="(gameDay, index) in gameDays" :key="index">
-      <h3 class="heading">{{ "Upcoming Date " + (index + 1) }}</h3>
+      <h3 class="heading">{{ new Date(gameDay[0].date).toLocaleDateString() }}</h3>
       
   
       <div class="row itemDisplay">

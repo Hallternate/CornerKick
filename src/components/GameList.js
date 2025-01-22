@@ -1,4 +1,6 @@
 
+/*
+
 
 const events = [
     { date: new Date('2025-01-04T18:00:00-06:00'), name: 'miles', loc: 'field1' },
@@ -15,6 +17,10 @@ const events = [
     { date: new Date('2024-12-21T18:00:00-07:00'), name: 'miles', loc: 'field7' },
     { date: new Date('2024-12-21T18:15:00-06:00'), name: 'ros', loc: 'field8' }
 ];
+//find a way to get the store to work
+
+
+
 
 // Get current date (ignoring time)
 const today = new Date();

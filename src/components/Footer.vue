@@ -9,6 +9,7 @@
     <nav>
         <RouterLink to="/home">Home</RouterLink>
         <RouterLink to="/future">Future</RouterLink><br>
+        <RouterLink to="/add">Add</RouterLink><br>
         <!--in future add map option
         <RouterLink to="/map">Map</RouterLink>-->
         

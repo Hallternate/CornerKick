@@ -18,15 +18,17 @@ export const useGamesStore = defineStore('schedule', {
   actions: {
     async fetchSchedule() {
       try {
-        const scheduleRef = ref(database, 'games');
+        const scheduleRef = ref(database, 'events');
         
         const snapshot = await get(scheduleRef);
         
         if (snapshot.exists()) {
           const newGames = snapshot.val(); 
+          const newGamesList = Object.values(newGames); 
 
-
-          this.games = [...this.games, ...newGames];
+          console.log(newGames); 
+          this.games = newGamesList;
+         
 
         
         } 

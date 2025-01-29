@@ -2,15 +2,18 @@ import { database, ref, push } from '../firebase';
 
 export async function pushGame(game) {
   try {
-    const gamesRef = ref(database, 'games');
-    await push(gamesRef, {
+    const eventsRef = ref(database, 'events'); 
+    
+   
+    const combinedDateTime = new Date(game.date + 'T' + game.time).toISOString();
+
+    await push(eventsRef, {
       name: game.name,
-      date: game.date,
-      time: game.time,
-      location: game.location,
+      date: combinedDateTime, 
+      loc: game.location,
     });
-    console.log('Game added successfully');
+    console.log('Event added successfully');
   } catch (error) {
-    console.error('Error adding game:', error);
+    console.error('Error adding event:', error);
   }
 }

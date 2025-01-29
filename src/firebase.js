@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get } from "firebase/database"; 
+import { getDatabase, ref, set, get, push } from "firebase/database"; 
 import { getAnalytics } from "firebase/analytics";
 const FIREBASE_KEY = import.meta.env.VITE_FIREBASE_KEY;
 
@@ -23,4 +23,4 @@ const analytics = getAnalytics(app);
 const database = getDatabase(app);
 
 
-export { database, ref, set, get };
+export { database, ref, set, get, push };

@@ -1,7 +1,7 @@
 <script setup>
 
 import { ref } from 'vue'
-import { useGamesStore } from '../store/GetGamesStore';
+import { pushGame } from '../store/AddGameStore';
 
 
 const nameToAdd = ref('')
@@ -31,8 +31,11 @@ console.log('location', locationToAdd.value)
   };
     console.log(newGame)
 
-    
+     pushGame(newGame); // Call the function to add to Firebase
+    console.log('Game added:', newGame);
 }
+
+
 </script>
 
 <template>
@@ -48,10 +51,10 @@ console.log('location', locationToAdd.value)
       </div>
 
       <div class="row itemDisplay">
-        <div class="col-6"><input v-model="nameToAdd" type="text"></div>
-        <div class="col-6"><input v-model="dateToAdd" type="date"></div>
-        <div class="col-6"><input v-model="timeToAdd" type="time"></div>
-        <div class="col-6"><input v-model="locationToAdd" type="text"></div>
+        <div class="col-6"><input v-model="nameToAdd" placeholder="name"type="text"></div>
+        <div class="col-6"><input v-model="dateToAdd" placeholder="date" type="date"></div>
+        <div class="col-6"><input v-model="timeToAdd" placeholder="time" type="time"></div>
+        <div class="col-6"><input v-model="locationToAdd" placeholder="location" type="text"></div>
       </div>
       <div class="row"><button @click="addGame">Add Game</button></div>
     </div>

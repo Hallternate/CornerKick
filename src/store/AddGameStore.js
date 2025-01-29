@@ -1,79 +1,16 @@
+import { database, ref, push } from '../firebase';
 
-/*change all of this out to add to databse*/
-
-
-import { defineStore } from 'pinia';
-import axios from 'axios';
-import { database, ref, get, push } from '../firebase';
-
-export const useGamesStore = defineStore('schedule', {
-  state: () => ({
-    games: [
-     
-    ],
-  }),
-
-  getters: {
-    getSchedule(state) {
-      return state.games;
-    },
-  },
-
-  actions: {
-    async fetchSchedule() {
-      try {
-        const scheduleRef = ref(database, 'events');
-        
-        const snapshot = await get(scheduleRef);
-        
-        if (snapshot.exists()) {
-          const newGames = snapshot.val(); 
-
-
-          this.games = [...this.games, ...newGames];
-
-        
-        } 
-      } catch (error) {
-        alert(error);
-        console.log(error);
-      }
-    },
-
-    
-    processGames() {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0); 
-
-      
-      const futureGames = this.games.filter(game => new Date(game.date) >= today);
-
-      
-      futureGames.sort((a, b) => new Date(a.date) - new Date(b.date));
-
-      
-      const uniqueDates = [...new Set(futureGames.map(game => new Date(game.date).toISOString().split('T')[0]))];
-  
-
-      
-      const gamesByDate = uniqueDates.map(date => futureGames.filter(game => new Date(game.date).toISOString().split('T')[0] === date));
-
-      return { uniqueDates, gamesByDate };
-    },
-
-    getTotalDates() {
-      const { uniqueDates } = this.processGames();
-      return uniqueDates.length;
-    },
-
-    nextUpcomingDay(chosenDate) {
-      const { gamesByDate } = this.processGames();
-      return gamesByDate[chosenDate] || [];
-    },
-
-    allFutureEvents() {
-      const { gamesByDate } = this.processGames();
-      return gamesByDate[1] || []; 
-    },
-  },
-});
+export async function pushGame(game) {
+  try {
+    const gamesRef = ref(database, 'games');
+    await push(gamesRef, {
+      name: game.name,
+      date: game.date,
+      time: game.time,
+      location: game.location,
+    });
+    console.log('Game added successfully');
+  } catch (error) {
+    console.error('Error adding game:', error);
+  }
+}

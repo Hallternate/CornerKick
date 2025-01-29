@@ -18,7 +18,7 @@ export const useGamesStore = defineStore('schedule', {
   actions: {
     async fetchSchedule() {
       try {
-        const scheduleRef = ref(database, 'events');
+        const scheduleRef = ref(database, 'games');
         
         const snapshot = await get(scheduleRef);
         

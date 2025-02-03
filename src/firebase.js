@@ -3,7 +3,6 @@ import { getDatabase, ref, set, get, push } from "firebase/database";
 import { getAnalytics } from "firebase/analytics";
 const FIREBASE_KEY = import.meta.env.VITE_FIREBASE_KEY;
 
-
 const firebaseConfig = {
   apiKey: FIREBASE_KEY,
   authDomain: "cornerkick-15acb.firebaseapp.com",
@@ -21,6 +20,5 @@ const analytics = getAnalytics(app);
 
 // Initialize Realtime Database
 const database = getDatabase(app);
-
 
 export { database, ref, set, get, push };

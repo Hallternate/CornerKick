@@ -1,12 +1,13 @@
 <script setup>
 
+/*This displays all future dates*/
+
 import { ref } from 'vue'
 import { useGamesStore } from '../store/GetGamesStore';
 
 const store = useGamesStore();
 const totalDates = store.getTotalDates()
 const gameDays = ref([])
-
 const fetchGameDays = () => {
   gameDays.value = []  
   for (let i = 0; i < totalDates; i++) {

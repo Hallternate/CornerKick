@@ -3,38 +3,23 @@
 import { ref } from 'vue'
 import { pushGame } from '../store/AddGameStore';
 
-
 const nameToAdd = ref('')
-console.log('name', nameToAdd.value)
 const dateToAdd = ref('')
-console.log('date', dateToAdd.value)
 const timeToAdd = ref('')
-console.log('date', timeToAdd.value)
 const locationToAdd = ref('')
-console.log('location', locationToAdd.value)
 
-
-
-
- 
-
-  function addGame (){
-    console.log('name', nameToAdd.value)
-    console.log('date', dateToAdd.value)
-    console.log('date', timeToAdd.value)
-    console.log('location', locationToAdd.value)
+  function addGame (){ /* grabs input and makes object to push */ 
     const newGame = {
     name: nameToAdd.value,
     date: dateToAdd.value,
     location: locationToAdd.value,
     time: timeToAdd.value,
   };
-    console.log(newGame)
+    
 
      pushGame(newGame); // Call the function to add to Firebase
-    console.log('Game added:', newGame);
+   
 }
-
 
 </script>
 
@@ -42,8 +27,6 @@ console.log('location', locationToAdd.value)
   <main>
     <div class="cardContainer">
       <h3 class="heading">Add Games</h3>
-      
-  
       <div class="row itemDisplay">
         <div class="col-4"><img class="iconsForList" src="../assets/person.png" /></div>
         <div class="col-4"><img class="iconsForList" src="../assets/time.png" /></div>

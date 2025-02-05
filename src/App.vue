@@ -26,6 +26,14 @@ import footer from './components/Footer.vue'
 <style scoped>
 
 
+
+body {
+  max-width: 1200px; /* Set max width */
+  margin: 0 auto; /* Center content */
+}
+
+
+
 .logoWrapper{background-image:url('/src/assets/goal.png');
 background-size: 130px;
 background-position: 50% 0%;
@@ -77,8 +85,12 @@ nav a:first-of-type {
   header {
     display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    margin-left: auto;
+    margin-right: auto;
   }
+
+  .logoWrapper{background-image:none;
+}
 
   .logo {
     margin: 0 2rem 0 0;

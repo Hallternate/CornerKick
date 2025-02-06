@@ -4,14 +4,16 @@
 
 import { ref } from 'vue'
 import { useGamesStore } from '../store/GetGamesStore';
+import { useDeleteGamesStore } from '../store/DeleteGameStore';
 
-const store = useGamesStore();
-const totalDates = store.getTotalDates()
+const storeGet = useGamesStore();
+const storeDelete = useDeleteGamesStore();
+const totalDates = storeGet.getTotalDates()
 const gameDays = ref([])
 const fetchGameDays = () => {
   gameDays.value = []  
   for (let i = 0; i < totalDates; i++) {
-    const day = store.nextUpcomingDay(i);
+    const day = storeGet.nextUpcomingDay(i);
     day.forEach(item => {
       if (typeof item.date === 'string') {
         item.date = new Date(item.date); 
@@ -22,6 +24,13 @@ const fetchGameDays = () => {
 };
 
 fetchGameDays()
+
+function deleteGame(dateToDelete){
+  dateToDelete = dateToDelete.toISOString();
+  console.log(dateToDelete)
+  storeDelete.deleteEntry(dateToDelete);
+
+}
 
 </script>
 
@@ -38,9 +47,10 @@ fetchGameDays()
       </div>
 
       <div class="row itemDisplay" v-for="(item, idx) in gameDay" :key="idx">
-        <div class="col-4">{{ item.name }}</div>
-        <div class="col-4">{{ item.date.toLocaleTimeString() }}</div>
-        <div class="col-4">{{ item.loc }}</div>
+        <div class="col-3">{{ item.name }}</div>
+        <div class="col-3">{{ item.date.toLocaleTimeString() }}</div>
+        <div class="col-3">{{ item.loc }}</div>
+        <div class="col-3"><button @click="deleteGame(item.date)">Delete</button></div>
       </div>
     </div>
   </main>

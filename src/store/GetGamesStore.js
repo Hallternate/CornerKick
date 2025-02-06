@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
 import { database, ref, get } from '../firebase';
 
 export const useGamesStore = defineStore('schedule', {

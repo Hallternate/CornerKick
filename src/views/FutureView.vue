@@ -36,8 +36,7 @@ async function deleteGame(idToDelete){
     confirmationMessage.value = '';
   }, 3200);
 
-  await storeGet.fetchGames(); 
-  fetchGameDays();
+  
 }
 
 </script>

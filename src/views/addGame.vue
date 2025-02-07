@@ -3,35 +3,41 @@
 import { ref } from 'vue'
 import { pushGame } from '../store/AddGameStore';
 
+const confirmationMessage = ref('');
 const nameToAdd = ref('')
 const dateToAdd = ref('')
 const timeToAdd = ref('')
 const locationToAdd = ref('')
 
-  function addGame (){ /* grabs input and makes object to push */ 
-    const newGame = {
+async function addGame() { 
+  const newGame = {
     name: nameToAdd.value,
     date: dateToAdd.value,
     location: locationToAdd.value,
     time: timeToAdd.value,
   };
-    
 
-     pushGame(newGame); // Call the function to add to Firebase
-   
+  const response = await pushGame(newGame); 
+  confirmationMessage.value = response.message; 
+
+  nameToAdd.value = '';
+  dateToAdd.value = '';
+  timeToAdd.value = '';
+  locationToAdd.value = '';
+
+ 
+  setTimeout(() => {
+    confirmationMessage.value = '';
+  }, 2000);
 }
 
 </script>
 
 <template>
   <main>
+    <p class="sucessDelete" v-if="confirmationMessage">{{ confirmationMessage }}</p>
     <div class="cardContainer">
-      <h3 class="heading">Add Games</h3>
-      <div class="row itemDisplay">
-        <div class="col-4"><img class="iconsForList" src="../assets/person.png" /></div>
-        <div class="col-4"><img class="iconsForList" src="../assets/time.png" /></div>
-        <div class="col-4"><img class="iconsForList" src="../assets/location.png" /></div>
-      </div>
+     
 
       <div class="row itemDisplay">
         <div class="col-6"><input v-model="nameToAdd" placeholder="name"type="text"></div>

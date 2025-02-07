@@ -1,33 +1,20 @@
 import { defineStore } from 'pinia';
-import { database, ref, get } from '../firebase';
+import { database, ref, remove } from '../firebase';
 
 export const useDeleteGamesStore = defineStore('deleteGames', {
   state: () => ({
     
   }),
 
-  getters: {
-    getSchedule(state) {
-      return state.games;
-    },
-  },
-
   actions: {
-    async deleteEntry(dateToDelete) {
-      
-        console.log('indelete game', dateToDelete)
+    async deleteEntry(idToDelete) {
+      try {
+        const gameRef = ref(database, `events/${idToDelete}`);
+        await remove(gameRef);
         
-      
+      } catch (error) {
+        console.error('Error deleting game:', error);
+      }
     },
-
-    
-   
-
-    
-
-    /*allFutureEvents() { /*boilerplate function
-      const { gamesByDate } = this.processGames();
-      return gamesByDate[1] || []; 
-    },*/
   },
 });

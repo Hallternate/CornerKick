@@ -25,11 +25,9 @@ const fetchGameDays = () => {
 
 fetchGameDays()
 
-function deleteGame(dateToDelete){
-  dateToDelete = dateToDelete.toISOString();
-  console.log(dateToDelete)
-  storeDelete.deleteEntry(dateToDelete);
-
+function deleteGame(idToDelete){
+  console.log(idToDelete)
+  storeDelete.deleteEntry(idToDelete);
 }
 
 </script>
@@ -50,7 +48,7 @@ function deleteGame(dateToDelete){
         <div class="col-3">{{ item.name }}</div>
         <div class="col-3">{{ item.date.toLocaleTimeString() }}</div>
         <div class="col-3">{{ item.loc }}</div>
-        <div class="col-3"><button @click="deleteGame(item.date)">Delete</button></div>
+        <div class="col-3"><button @click="deleteGame(item.id)">Delete</button></div>
       </div>
     </div>
   </main>

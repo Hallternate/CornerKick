@@ -21,15 +21,20 @@ export const useGamesStore = defineStore('schedule', {
         const snapshot = await get(scheduleRef);
         if (snapshot.exists()) {
           const newGames = snapshot.val(); 
-          const newGamesList = Object.values(newGames); 
-          console.log(newGames); 
-          this.games = newGamesList;
+          const newGamesList = Object.entries(newGames).map(([id, game]) => {
+            console.log("Game ID:", id); 
+            console.log("Game Data:", game); 
+            return { id, ...game }; 
+          });
+    
+          this.games = newGamesList; 
         } 
       } catch (error) {
         alert(error);
         console.log(error);
       }
     },
+    
 
     
     processGames() { /* this grabs the upcoming games and organizes by date soonest to farthest out starting after the current date*/ 

@@ -2,13 +2,13 @@
 
 /*This displays all future dates*/
 
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useGamesStore } from '../store/GetGamesStore';
 import { useDeleteGamesStore } from '../store/DeleteGameStore';
 
-const storeGet = useGamesStore();
-const confirmationMessage = ref('');
-const storeDelete = useDeleteGamesStore();
+const storeGet = useGamesStore()
+const confirmationMessage = ref('')
+const storeDelete = useDeleteGamesStore()
 const totalDates = storeGet.getTotalDates()
 const gameDays = ref([])
 const clickedItemId = ref(null);
@@ -25,7 +25,12 @@ const fetchGameDays = () => {
   }
 };
 
-fetchGameDays()
+onMounted(async () => {
+  await storeGet.fetchSchedule();  
+  await fetchGameDays();           
+});
+
+
 
 async function deleteGame(idToDelete){
   clickedItemId.value = idToDelete;

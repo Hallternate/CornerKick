@@ -34,18 +34,21 @@ export const useGamesStore = defineStore('schedule', {
         console.log(error);
       }
     },
-    
 
-    
-    processGames() { /* this grabs the upcoming games and organizes by date soonest to farthest out starting after the current date*/ 
-      const today = new Date();
+    processGames() { 
+      // This grabs the upcoming games and organizes them by date, soonest to farthest
+      let today = new Date();
       today.setHours(0, 0, 0, 0); 
-      const futureGames = this.games.filter(game => new Date(game.date) >= today);
+      let games = this.games;
+      let futureGames = games.filter(game => new Date(game.date) >= today);
       futureGames.sort((a, b) => new Date(a.date) - new Date(b.date));
-      const uniqueDates = [...new Set(futureGames.map(game => new Date(game.date).toISOString().split('T')[0]))];
-      const gamesByDate = uniqueDates.map(date => futureGames.filter(game => new Date(game.date).toISOString().split('T')[0] === date));
+      let uniqueDates = [...new Set(futureGames.map(game => new Date(game.date).toISOString().split('T')[0]))];
+      const gamesByDate = uniqueDates.map(date => 
+        futureGames.filter(game => new Date(game.date).toISOString().split('T')[0] === date)
+      );
       return { uniqueDates, gamesByDate };
     },
+    
 
     getTotalDates() {/*returns the number of upcoming games*/ 
       const { uniqueDates } = this.processGames();

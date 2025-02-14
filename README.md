@@ -6,6 +6,8 @@ A web app for keeping track of different events and schedules across different l
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
+
+..or just use the github codespace...
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vite.dev/config/).
